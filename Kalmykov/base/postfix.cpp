@@ -86,12 +86,23 @@ string TPostfix::ToPostfix()
 				break;
 			}
 			case ADD: {
+				if (lState == ADD) 
+				{
+					postfix += st.Pop();
+					postfix += ' ';
+				}
+
 				if (lState == MULT || lState == RIGHT_BRACKET)
 					FillLine(&st);
 				st.Push(c);
 				break;
 			}
 			case MULT: {
+				if (lState == MULT) 
+				{ 
+					postfix += st.Pop(); 
+					postfix += ' ';
+				}
 				st.Push(c);
 				break;
 			}
